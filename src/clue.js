@@ -67,7 +67,7 @@ const suspectsArray = [
       'https://static.independent.co.uk/s3fs-public/thumbnails/image/2016/07/04/08/unspecified-3.jpg',
     color: 'yellow'
   }
-];
+]
 
 // Rooms Array
 
@@ -87,7 +87,7 @@ const roomsArray = [
   { name: 'Theater' },
   { name: 'Guest House' },
   { name: 'Patio' }
-];
+]
 
 // Weapons Array
 
@@ -101,17 +101,32 @@ const weaponsArray = [
   { name: 'bat', weight: 13 },
   { name: 'trophy', weight: 25 },
   { name: 'pistol', weight: 20 }
-];
+]
 
 // ITERATION 2
 
-function selectRandom() {}
+function selectRandom(cardStack) {
+  if (cardStack.length == 1) {
+    return cardStack[0]
+  }
+  const indexOfCardChosen = Math.floor(Math.random() * cardStack.length)
+  return cardStack[indexOfCardChosen]
+}
 
-function pickMystery() {}
+function pickMystery() {
+  const misteryPicked = {
+    suspect: selectRandom(suspectsArray),
+    weapon: selectRandom(weaponsArray),
+    room: selectRandom(roomsArray)
+  }
+  return misteryPicked
+}
 
 // ITERATION 3
 
-function revealMystery() {}
+function revealMystery(envelope) {
+  return `${envelope.suspect.firstName} ${envelope.suspect.lastName} killed Mr. Boddy using the ${envelope.weapon.name} in the ${envelope.room.name}!`
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
@@ -123,5 +138,5 @@ if (typeof module !== 'undefined') {
     pickMystery,
     revealMystery,
     selectRandom
-  };
+  }
 }
